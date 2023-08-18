@@ -1,0 +1,10 @@
+services:
+        wordpress:
+                build: ./requirements/wordpress/
+                container_name: wordpress
+
+        nginx:
+                build: ./requirements/nginx/
+                container_name: nginx
+                ports: 
+                        - 443:443                
