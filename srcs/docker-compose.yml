@@ -1,10 +1,28 @@
 services:
-        wordpress:
-                build: ./requirements/wordpress/
-                container_name: wordpress
+	wordpress:
+			build: ./requirements/wordpress/
+			container_name: wordpress
+			volumes: 
+					- wordpress-data:/var/www/wordpress
+			networks:
+					- mynetwork
+		
 
-        nginx:
-                build: ./requirements/nginx/
-                container_name: nginx
-                ports: 
-                        - 443:443                
+	nginx:
+			build: ./requirements/nginx/
+			container_name: nginx
+			ports: 
+					- 443:443                
+			volumes:
+					- wordpress-data:/var/www/wordpress
+			networks:
+					- mynetwork
+			depends_on:
+					- wordpress      
+volumes:
+	wordpress-data:
+
+networks:
+	mynetwork:
+		driver:
+			bridge
