@@ -1,3 +1,4 @@
-FROM debian:bookworm-backports
+FROM debian:bullseye-slim
 
+RUN apt update
 
