@@ -2,14 +2,15 @@ services:
     wordpress:
             build: ./requirements/wordpress/
             container_name: wordpress
-            volumes: 
+            volumes:
                     - wordpress-data:/var/www/wordpress
             networks:
                     - inception
             depends_on:
-                    - mariadb
+                mariadb:
+                    condition: service_healthy
             env_file:
-                .env # file with enviroment variables
+                .env
     nginx:
             build: ./requirements/nginx/
             container_name: nginx
@@ -19,6 +20,8 @@ services:
                     - inception
             depends_on:
                     - wordpress
+            volumes:
+                - wordpress-data:/var/www/wordpress
     mariadb:
             build: ./requirements/mariadb/
             container_name: mariadb
@@ -26,9 +29,16 @@ services:
                     - inception
             env_file:
                 .env
+            healthcheck:
+                test: mysqladmin ping -h localhost -u$MYSQL_USER -p$MYSQL_ROOT_PASSWD
+                interval: 5s
+                timeout: 5s
+                retries: 7
 volumes:
     wordpress-data:
+    mariadb-data:
+
 networks:
     inception:
-        driver:
-            bridge
+            driver:
+                bridge
