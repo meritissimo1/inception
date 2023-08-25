@@ -16,5 +16,4 @@ GRANT ALL PRIVILEGES ON \`$MYSQL_DATABASE\`.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-exec "$@"
-##exec mysqld --user=mysql
+exec mysqld --user=mysql
