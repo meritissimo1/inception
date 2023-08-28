@@ -7,6 +7,8 @@ up:
 
 build:
 	sudo sed -i 's/localhost/marcrodr.42.fr/g' /etc/hosts
+	sudo mkdir -p /home/marcrodr/data/wordpress
+	sudo mkdir -p /home/marcrodr/data/mariadb
 	docker-compose -f $(DIR) up -d --build
 
 down:
