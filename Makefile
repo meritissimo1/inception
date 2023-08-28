@@ -1,12 +1,13 @@
-DOCKER_COMPOSE = docker-compose
-
-FLAGS = -f
-
 DIR = ./srcs/docker-compose.yml
 
+all: build
+
 up:
+	docker-compose -f $(DIR) up -d
+
+build:
 	sudo sed -i 's/localhost/marcrodr.42.fr/g' /etc/hosts
-	$(DOCKER_COMPOSE) $(FLAGS) $(DIR) up --build
+	docker-compose -f $(DIR) up -d --build
 
 down:
-	$(DOCKER_COMPOSE) $(FLAGS) $(DIR) down
+	docker-compose -f $(DIR) down
