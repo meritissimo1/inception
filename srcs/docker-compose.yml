@@ -16,6 +16,9 @@ services:
                     - MYSQL_ROOT_PASSWD
                     - DOMAIN_NAME
                     - MYSQL_HOST
+                    - COMMON_USER
+                    - COMMON_EMAIL
+                    - COMMON_PASS
     nginx:
             build: ./requirements/nginx/
             container_name: nginx
