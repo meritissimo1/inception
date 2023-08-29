@@ -39,7 +39,7 @@ services:
                     - DOMAIN_NAME
                     - MYSQL_ROOT_PASSWD
             healthcheck:
-                test: mysqladmin ping -h localhost -u$MYSQL_USER -p$MYSQL_ROOT_PASSWD
+                test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWD}"]
                 interval: 5s
                 timeout: 5s
                 retries: 7
