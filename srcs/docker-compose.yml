@@ -1,6 +1,7 @@
 services:
     wordpress:
             build: ./requirements/wordpress/
+            image: wordpress:inception
             container_name: wordpress
             volumes:
                     - wordpress-data:/var/www/wordpress
@@ -21,6 +22,7 @@ services:
                     - COMMON_PASS
     nginx:
             build: ./requirements/nginx/
+            image: nginx:inception
             container_name: nginx
             ports: 
                     - 443:443
@@ -32,6 +34,7 @@ services:
                 - wordpress-data:/var/www/wordpress
     mariadb:
             build: ./requirements/mariadb/
+            image: mariadb:inception
             container_name: mariadb
             networks:
                     - inception
@@ -48,15 +51,6 @@ services:
                 retries: 7
             volumes:
                     - mariadb-data:/var/lib/mysql
-
-volumes:
-  wordpress_data:
-    name: wordpress-data
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: /home/lpires-n/data/wordpress
 
 volumes:
     wordpress-data:
