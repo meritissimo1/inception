@@ -48,7 +48,7 @@ services:
                 test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWD}"]
                 interval: 5s
                 timeout: 5s
-                retries: 7
+                retries: 5
             volumes:
                     - mariadb-data:/var/lib/mysql
 
