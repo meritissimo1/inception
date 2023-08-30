@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim 
+FROM debian:bullseye
 
 RUN apt update && apt install -y wget php-fpm php-json php-mysql wordpress libfcgi-bin
 
